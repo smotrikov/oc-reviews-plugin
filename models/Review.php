@@ -35,15 +35,16 @@ class Review extends Model
         'rating' => 'numeric',
         'approved' => 'boolean',
         'content' => 'required|min:6|max:3000',
+        'published_at' => 'required|date'
     ];
 
-    public $translatable = ['name', 'title', 'content'];
+    public $translatable = ['name', 'title', 'content', 'published_at'];
 
     public $fillable = [
-        'email', 'name', 'title', 'rating', 'content', 'approved',
+        'email', 'name', 'title', 'rating', 'content', 'approved','published_at'
     ];
 
-    public $dates = ['created_at', 'updated_at', 'deleted_at'];
+    public $dates = ['created_at', 'updated_at', 'deleted_at', 'published_at'];
 
     public $belongsToMany = [
         'categories' => [
