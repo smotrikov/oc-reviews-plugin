@@ -1,4 +1,4 @@
-$(document).ready(function() {
+addEventListener('page:loaded', function() {
 
     $(".rateyo").each(function() {
 

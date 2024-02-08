@@ -56,6 +56,10 @@ class Review extends Model
         ]
     ];
 
+    public $attachOne = [
+        'avatar' => ['System\Models\File'],
+    ];
+
     /**
      * Before create review.
      */
