@@ -28,6 +28,13 @@ tabs:
             type: textarea
             size: medium
             span: full
+        published_at:
+            label: Published At
+            tab: General
+            mode: datetime
+            span: left
+            type: datepicker
+            format: d.m.Y
         approved:
             tab: General
             label: Approved
