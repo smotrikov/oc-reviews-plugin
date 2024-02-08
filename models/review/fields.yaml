@@ -1,7 +1,14 @@
 fields:
+    avatar:
+        label: Avatar
+        span: left
+        type: fileupload
+        mode: image
+        imageWidth: 200
+        imageHeight: 200
     name:
         label: Name
-        span: left
+        span: right
         type: text
     email:
         label: Email
