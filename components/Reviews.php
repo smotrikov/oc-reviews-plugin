@@ -26,6 +26,18 @@ class Reviews extends ComponentBase
                 'type' => 'string',
                 'default' => '{{ :category }}',
             ],
+            'page' => [
+                'title' => 'Page',
+                'description' => '',
+                'type' => 'string',
+                'default' => '{{ :page }}'
+            ],
+            'perPage' => [
+                'title' => 'Count per page',
+                'description' => '',
+                'type' => 'number',
+                'default' => 10
+            ],
         ];
     }
 
@@ -36,21 +48,27 @@ class Reviews extends ComponentBase
         if ($categorySlug = $this->property('categoryFilter')) {
             $category = $this->getCategory($categorySlug);
         }
+
+        $page = intval($this->property('page' , 1)) ?: 1;
+        $perPage = intval($this->property('perPage' , 10));
+
         $this->page['category'] = $category;
-        $this->page['reviews'] = $this->reviews($category);
+        $this->page['reviews'] = $this->reviews($category, $page, $perPage);
     }
 
     /**
      * Get reviews.
      *
      * @param Category $category Filter by category.
+     * @param int $page
+     * @param int $perPage
      *
      * @return mixed
      */
-    public function reviews($category = null)
+    public function reviews($category = null, $page = 1, $perPage = 10)
     {
         if ($this->reviews === null) {
-            $this->reviews = $this->getFacade()->getApprovedReviews($category);
+            $this->reviews = $this->getFacade()->getApprovedReviews($category, $page, $perPage);
         }
 
         return $this->reviews;
