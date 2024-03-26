@@ -39,12 +39,14 @@ class ReviewsFacade
      * Get approved reviews (for displaying at frontend).
      *
      * @param Category $category Filter results by category.
+     * @param int $page
+     * @param int $perPage
      *
      * @return array
      */
-    public function getApprovedReviews($category = null)
+    public function getApprovedReviews($category = null, $page = 1, $perPage = 10)
     {
-        $query = $this->reviews->isApproved()->orderBy('sort_order');
+        $query = $this->reviews->isApproved()->orderBy('published_at', 'DESC');
 
         if ($category !== null) {
             $query->whereHas('categories', function($query) use ($category) {
@@ -52,7 +54,9 @@ class ReviewsFacade
             });
         }
 
-        return $query->get();
+        return $page === null
+            ? $query->get()
+            : $query->paginate($perPage, $page);
     }
 
     /**
