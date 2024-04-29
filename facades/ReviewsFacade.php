@@ -39,12 +39,12 @@ class ReviewsFacade
      * Get approved reviews (for displaying at frontend).
      *
      * @param Category $category Filter results by category.
-     * @param int $page
-     * @param int $perPage
+     * @param ?int $page
+     * @param ?int $perPage
      *
      * @return array
      */
-    public function getApprovedReviews($category = null, $page = 1, $perPage = 10)
+    public function getApprovedReviews($category = null, $page = null, $perPage = null)
     {
         $query = $this->reviews->isApproved()->orderBy('published_at', 'DESC');
 

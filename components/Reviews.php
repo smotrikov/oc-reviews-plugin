@@ -49,8 +49,10 @@ class Reviews extends ComponentBase
             $category = $this->getCategory($categorySlug);
         }
 
-        $page = intval($this->property('page' , 1)) ?: 1;
-        $perPage = intval($this->property('perPage' , 10));
+        $page = $this->property('page', null);
+        $page = $page === null ? null : $page;
+
+        $perPage = $this->property('perPage', 10);
 
         $this->page['category'] = $category;
         $this->page['reviews'] = $this->reviews($category, $page, $perPage);
@@ -60,12 +62,12 @@ class Reviews extends ComponentBase
      * Get reviews.
      *
      * @param Category $category Filter by category.
-     * @param int $page
-     * @param int $perPage
+     * @param ?int $page
+     * @param ?int $perPage
      *
      * @return mixed
      */
-    public function reviews($category = null, $page = 1, $perPage = 10)
+    public function reviews($category = null, $page = null, $perPage = null)
     {
         if ($this->reviews === null) {
             $this->reviews = $this->getFacade()->getApprovedReviews($category, $page, $perPage);
@@ -95,4 +97,24 @@ class Reviews extends ComponentBase
     {
         return App::make('vojtasvoboda.reviews.facade');
     }
+
+    public function byCategory($category = null)
+    {
+
+        $categorySlug = $this->property('categoryFilter');
+        $category = $this->getCategory($categorySlug);
+        if(!$category)
+        {
+            return null;
+        }
+        $reviews = ReviewModel::isApproved()->orderBy('created_at','DESC');
+
+        $reviews->whereHas('categories', function($query) use ($category) {
+            $query->where('category_id', $category->id);
+        });
+
+
+        return $reviews->get();
+    }
+
 }
