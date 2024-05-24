@@ -58,7 +58,7 @@ class Reviews extends ComponentBase
 
         $this->page['category'] = $category;
         $this->page['reviews'] = $this->reviews($category, $page, $perPage);
-        $this->page['avgRating'] = $this->getAvgRating($category);
+        $this->page['rating'] = $this->getAvgRating($category);
     }
 
     /**
@@ -82,7 +82,7 @@ class Reviews extends ComponentBase
     private function getAvgRating($category = null)
     {
         if ($this->avgRating === null) {
-            $this->avgRating = $this->getFacade()->getAvgRaiting($category);
+            $this->avgRating = $this->getFacade()->getAvgRating($category);
         }
 
         return $this->avgRating;

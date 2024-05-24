@@ -63,7 +63,7 @@ class ReviewsFacade
      * @param $category
      * @return float|int
      */
-    public function getAvgRaiting($category = null)
+    public function getAvgRating($category = null)
     {
         $query = $this->reviews->isApproved();
 
