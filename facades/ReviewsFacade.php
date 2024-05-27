@@ -60,6 +60,26 @@ class ReviewsFacade
     }
 
     /**
+     * @param $category
+     * @return float|int
+     */
+    public function getAvgRating($category = null)
+    {
+        $query = $this->reviews->isApproved();
+
+        if ($category !== null) {
+            $query->whereHas('categories', function($query) use ($category) {
+                $query->where('category_id', $category->id);
+            });
+        }
+
+        $avg = $query->avg('rating');
+
+        return $avg === null ? 0 : round($avg, 2);
+    }
+
+
+    /**
      * Get non approved reviews (for admin approval).
      *
      * @return array
