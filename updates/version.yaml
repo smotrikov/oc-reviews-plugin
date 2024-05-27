@@ -11,15 +11,15 @@
 1.0.6 :
     - Change sort_order column type
     - change_sort_order_column_type.php
-1.1.1: Add import/export
-1.1.2: Fix missing start
-1.2.0: Add avatar
-1.3.0:
+1.0.7: Add import/export
+1.0.8: Fix missing start
+1.0.9: Add avatar
+1.0.10:
     - Add published date
     - add_reviews_published_at.php
-1.4.0:
+1.0.11:
     - Add pagination for reviews
-1.4.1:
+1.0.12:
     - Minor fixes
 1.5.0:
     - Added overall rating for reviews
