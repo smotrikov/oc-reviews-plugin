@@ -11,6 +11,8 @@ class Reviews extends ComponentBase
 
     private $avgRating;
 
+    public $category;
+
     public function componentDetails()
     {
         return [
@@ -97,7 +99,11 @@ class Reviews extends ComponentBase
      */
     public function getCategory($category)
     {
-        return Category::where('slug', $category)->first();
+        if ($this->category === null) {
+            $this->category = Category::where('slug', $category)->first();
+        }
+
+        return $this->category;
     }
 
     /**
