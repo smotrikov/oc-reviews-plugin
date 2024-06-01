@@ -23,3 +23,5 @@
     - Minor fixes
 1.5.0:
     - Added overall rating for reviews
+1.5.1:
+    - Fix page url parameter for category reviews (to display breadcrumbs correctly)

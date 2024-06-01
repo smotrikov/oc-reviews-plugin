@@ -47,11 +47,14 @@ class Reviews extends ComponentBase
     {
         // category filter
         $category = null;
+
         if ($categorySlug = $this->property('categoryFilter')) {
             $category = $this->getCategory($categorySlug);
+            $page = $this->property('categoryPage', null);
+        }else{
+            $page = $this->property('page', null);
         }
 
-        $page = $this->property('page', null);
         $page = $page === null ? null : $page;
 
         $perPage = $this->property('perPage', 10);
