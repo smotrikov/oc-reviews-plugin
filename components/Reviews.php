@@ -4,6 +4,7 @@ use App;
 use Cms\Classes\ComponentBase;
 use VojtaSvoboda\Reviews\Facades\ReviewsFacade;
 use VojtaSvoboda\Reviews\Models\Category;
+use VojtaSvoboda\Reviews\Models\Review as ReviewModel;
 
 class Reviews extends ComponentBase
 {
