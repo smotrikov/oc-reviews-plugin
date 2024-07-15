@@ -43,6 +43,7 @@ class Plugin extends PluginBase
     {
         return [
             'VojtaSvoboda\Reviews\Components\Reviews' => 'reviews',
+            'VojtaSvoboda\Reviews\Components\Categories' => 'Categories',
         ];
     }
 
