@@ -23,5 +23,7 @@
     - Minor fixes
 1.5.0:
     - Added overall rating for reviews
+1.5.1:
+    - Fix, added ReviewModel in Reviews component;
 1.6.0:
     - Added category display component

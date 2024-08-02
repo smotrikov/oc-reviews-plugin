@@ -4,12 +4,15 @@ use App;
 use Cms\Classes\ComponentBase;
 use VojtaSvoboda\Reviews\Facades\ReviewsFacade;
 use VojtaSvoboda\Reviews\Models\Category;
+use VojtaSvoboda\Reviews\Models\Review as ReviewModel;
 
 class Reviews extends ComponentBase
 {
     private $reviews;
 
     private $avgRating;
+
+    public $category;
 
     public function componentDetails()
     {
@@ -97,7 +100,11 @@ class Reviews extends ComponentBase
      */
     public function getCategory($category)
     {
-        return Category::where('slug', $category)->first();
+        if ($this->category === null) {
+            $this->category = Category::where('slug', $category)->first();
+        }
+
+        return $this->category;
     }
 
     /**

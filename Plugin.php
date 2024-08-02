@@ -2,11 +2,28 @@
 
 use Backend;
 use System\Classes\PluginBase;
+use System\Classes\PluginManager;
+use VojtaSvoboda\Reviews\Components\Reviews;
 
 class Plugin extends PluginBase
 {
     public function boot()
     {
+        if (PluginManager::instance()->hasPlugin('smotrikov.breadcrumbs')) {
+            \Event::listen('smotrikov.breadcrumbs.title.map', function ($page, $currentPage) {
+                if (!isset($currentPage->components['reviews'])) {
+                    return null;
+                }
+
+                $component = $currentPage->components['reviews'];
+
+                if ($page->baseFileName === 'reviews/category') {
+                    /** @var Reviews $component */
+                    return $component->category->name ?? null;
+                }
+            });
+        }
+
         $this->app->bind('vojtasvoboda.reviews.facade', 'VojtaSvoboda\Reviews\Facades\ReviewsFacade');
     }
 
