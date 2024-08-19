@@ -27,3 +27,5 @@
     - Fix, added ReviewModel in Reviews component;
 1.6.0:
     - Added category display component
+1.6.1:
+    - Renamed category component
